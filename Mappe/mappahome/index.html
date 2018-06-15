@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/label.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <script src="js/OSMBuildings-Leaflet.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/label.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="data/json_a0102011ConfiniComunali0.js"></script>
+        <script src="data/json_ville1.js"></script>
+        <script src="data/json_FIUMI2.js"></script>
+        <script src="data/json_TERRAGLIO3.js"></script>
+        <script src="data/json_ViaTommasini4.js"></script>
+        <script src="data/json_ViaSassi5.js"></script>
+        <script src="data/json_ViaGhetto6.js"></script>
+        <script src="data/json_ViaRonzinella7.js"></script>
+        <script src="data/json_ViaZermanessa8.js"></script>
+        <script src="data/json_ViaNuova9.js"></script>
+        <script src="data/json_ViaAlta10.js"></script>
+        <script src="data/json_ViaRoma11.js"></script>
+        <script>
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).setView([45.5664,12.2904],13);
+        var hash = new L.Hash(map);
+        //map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var feature_group = new L.featureGroup([]);
+        var bounds_group = new L.featureGroup([]);
+        var raster_group = new L.LayerGroup([]);
+        var initialOrder = new Array();
+        var layerOrder = new Array();
+        function stackLayers() {
+            for (index = 0; index < initialOrder.length; index++) {
+                map.removeLayer(initialOrder[index]);
+                map.addLayer(initialOrder[index]);
+            }
+        }
+        function restackLayers() {
+            for (index = 0; index < layerOrder.length; index++) {
+                layerOrder[index].bringToFront();
+            }
+        }
+        layerControl = L.control.layers({},{},{collapsed:false});
+        function pop_a0102011ConfiniComunali0(feature, layer) {
+            var popupContent =(feature.properties['NomeCom'] !== null ? Autolinker.link(String(feature.properties['NomeCom'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStylea0102011ConfiniComunali0(feature) {
+            return {
+                weight: 2.64,
+                color: '#000000',
+                fillColor: 'none',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0,
+                fillOpacity: 1.0
+            };
+        }
+        var json_a0102011ConfiniComunali0JSON = new L.geoJson(json_a0102011ConfiniComunali0, {
+            onEachFeature: pop_a0102011ConfiniComunali0,
+            style: doStylea0102011ConfiniComunali0
+        });
+        layerOrder[layerOrder.length] = json_a0102011ConfiniComunali0JSON;
+        bounds_group.addLayer(json_a0102011ConfiniComunali0JSON);
+        initialOrder[initialOrder.length] = json_a0102011ConfiniComunali0JSON;
+        feature_group.addLayer(json_a0102011ConfiniComunali0JSON);
+        function pop_ville1(feature, layer) {
+            var popupContent =(feature.properties['Popup'] !== null ? Autolinker.link(String(feature.properties['Popup'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleville1(feature) {
+            return {
+                weight: 8.24,
+                color: '#ef0000',
+                fillColor: '#ef0000',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0,
+                fillOpacity: 1.0
+            };
+        }
+        var json_ville1JSON = new L.geoJson(json_ville1, {
+            onEachFeature: pop_ville1,
+            style: doStyleville1
+        });
+        layerOrder[layerOrder.length] = json_ville1JSON;
+        bounds_group.addLayer(json_ville1JSON);
+        initialOrder[initialOrder.length] = json_ville1JSON;
+        feature_group.addLayer(json_ville1JSON);
+        function pop_FIUMI2(feature, layer) {
+            var popupContent =(feature.properties['NOME'] !== null ? Autolinker.link(String(feature.properties['NOME'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleFIUMI2(feature) {
+            return {
+                weight: 3.2,
+                color: '#0561ff',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_FIUMI2JSON = new L.geoJson(json_FIUMI2, {
+            onEachFeature: pop_FIUMI2,
+            style: doStyleFIUMI2
+        });
+        layerOrder[layerOrder.length] = json_FIUMI2JSON;
+        bounds_group.addLayer(json_FIUMI2JSON);
+        initialOrder[initialOrder.length] = json_FIUMI2JSON;
+        feature_group.addLayer(json_FIUMI2JSON);
+        function pop_TERRAGLIO3(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleTERRAGLIO3(feature) {
+            return {
+                weight: 3.44,
+                color: '#f26500',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_TERRAGLIO3JSON = new L.geoJson(json_TERRAGLIO3, {
+            onEachFeature: pop_TERRAGLIO3,
+            style: doStyleTERRAGLIO3
+        });
+        layerOrder[layerOrder.length] = json_TERRAGLIO3JSON;
+        bounds_group.addLayer(json_TERRAGLIO3JSON);
+        initialOrder[initialOrder.length] = json_TERRAGLIO3JSON;
+        feature_group.addLayer(json_TERRAGLIO3JSON);
+        function pop_ViaTommasini4(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaTommasini4(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaTommasini4JSON = new L.geoJson(json_ViaTommasini4, {
+            onEachFeature: pop_ViaTommasini4,
+            style: doStyleViaTommasini4
+        });
+        layerOrder[layerOrder.length] = json_ViaTommasini4JSON;
+        bounds_group.addLayer(json_ViaTommasini4JSON);
+        initialOrder[initialOrder.length] = json_ViaTommasini4JSON;
+        feature_group.addLayer(json_ViaTommasini4JSON);
+        function pop_ViaSassi5(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaSassi5(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaSassi5JSON = new L.geoJson(json_ViaSassi5, {
+            onEachFeature: pop_ViaSassi5,
+            style: doStyleViaSassi5
+        });
+        layerOrder[layerOrder.length] = json_ViaSassi5JSON;
+        bounds_group.addLayer(json_ViaSassi5JSON);
+        initialOrder[initialOrder.length] = json_ViaSassi5JSON;
+        feature_group.addLayer(json_ViaSassi5JSON);
+        function pop_ViaGhetto6(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaGhetto6(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaGhetto6JSON = new L.geoJson(json_ViaGhetto6, {
+            onEachFeature: pop_ViaGhetto6,
+            style: doStyleViaGhetto6
+        });
+        layerOrder[layerOrder.length] = json_ViaGhetto6JSON;
+        bounds_group.addLayer(json_ViaGhetto6JSON);
+        initialOrder[initialOrder.length] = json_ViaGhetto6JSON;
+        feature_group.addLayer(json_ViaGhetto6JSON);
+        function pop_ViaRonzinella7(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaRonzinella7(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaRonzinella7JSON = new L.geoJson(json_ViaRonzinella7, {
+            onEachFeature: pop_ViaRonzinella7,
+            style: doStyleViaRonzinella7
+        });
+        layerOrder[layerOrder.length] = json_ViaRonzinella7JSON;
+        bounds_group.addLayer(json_ViaRonzinella7JSON);
+        initialOrder[initialOrder.length] = json_ViaRonzinella7JSON;
+        feature_group.addLayer(json_ViaRonzinella7JSON);
+        function pop_ViaZermanessa8(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaZermanessa8(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaZermanessa8JSON = new L.geoJson(json_ViaZermanessa8, {
+            onEachFeature: pop_ViaZermanessa8,
+            style: doStyleViaZermanessa8
+        });
+        layerOrder[layerOrder.length] = json_ViaZermanessa8JSON;
+        bounds_group.addLayer(json_ViaZermanessa8JSON);
+        initialOrder[initialOrder.length] = json_ViaZermanessa8JSON;
+        feature_group.addLayer(json_ViaZermanessa8JSON);
+        function pop_ViaNuova9(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaNuova9(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaNuova9JSON = new L.geoJson(json_ViaNuova9, {
+            onEachFeature: pop_ViaNuova9,
+            style: doStyleViaNuova9
+        });
+        layerOrder[layerOrder.length] = json_ViaNuova9JSON;
+        bounds_group.addLayer(json_ViaNuova9JSON);
+        initialOrder[initialOrder.length] = json_ViaNuova9JSON;
+        feature_group.addLayer(json_ViaNuova9JSON);
+        function pop_ViaAlta10(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaAlta10(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaAlta10JSON = new L.geoJson(json_ViaAlta10, {
+            onEachFeature: pop_ViaAlta10,
+            style: doStyleViaAlta10
+        });
+        layerOrder[layerOrder.length] = json_ViaAlta10JSON;
+        bounds_group.addLayer(json_ViaAlta10JSON);
+        initialOrder[initialOrder.length] = json_ViaAlta10JSON;
+        feature_group.addLayer(json_ViaAlta10JSON);
+        function pop_ViaRoma11(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaRoma11(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaRoma11JSON = new L.geoJson(json_ViaRoma11, {
+            onEachFeature: pop_ViaRoma11,
+            style: doStyleViaRoma11
+        });
+        layerOrder[layerOrder.length] = json_ViaRoma11JSON;
+        bounds_group.addLayer(json_ViaRoma11JSON);
+        initialOrder[initialOrder.length] = json_ViaRoma11JSON;
+        feature_group.addLayer(json_ViaRoma11JSON);
+        raster_group.addTo(map);
+        feature_group.addTo(map);
+        stackLayers();
+        map.on('overlayadd', restackLayers);
+        </script>
+    </body>
+</html>

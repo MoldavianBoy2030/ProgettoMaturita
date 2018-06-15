@@ -1,0 +1,1191 @@
+<!--	SEZIONE N°1		-->
+<!doctype html>
+<html lang="it">
+    <head>
+		<META NAME="DESCRIPTION" CONTENT="Permanenze e trasformazioni raccontate attraverso una lettura web gis che permette di leggere e scoprire attraverso gli anni i segni caratteristici del comune per giungere a definire le future linee di sviluppo.">
+		<META NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
+		<META NAME="KEYWORDS" CONTENT="Storyplanning,storyplanner,storymap,territori,racconti,esperienze,Mogliano Veneto,TerreSRL,paesaggio,ambiente,urbanistica,startup,Mogliano Veneto">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Fira+Sans:400,400italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+		<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+		<script src="js/modernizr.js"></script> <!-- Modernizr -->
+  	
+		<link rel="shortcut icon" href="img/TerreSRL.png" type="image/x-icon" />  <!-- PER INSERIRE LA FAVICON -->
+		<link rel="icon" href="img/TerreSRL.png" type="image/x-icon" />
+		
+		<title> Mogliano Veneto </title> <!-- TITOLO -->
+<!--	SEZIONE N°2		-->		
+		<style type="text/css">
+			html, body{
+				width: 100%;
+				height: 100%;
+				font-family:Calibri
+			}  
+			
+			/* #PrimaM,#SecondaM,#TerzaM#QuartaM#QuintaM#SestaM#SettimaM#OttavaM#NonaM */
+		.M {
+			position:fixed;
+			padding:0;
+			margin:0;
+			top:0;
+			left:0;
+			width: 100%;
+			height: 100%;
+			font-family:Calibri
+		}
+
+			/* The Modal (background) */
+		.modal{
+			display: none; 
+			position: fixed; /* rimani qui */
+			z-index: 40;
+			left: 68.8%;
+			width = 100%;
+			font-family: Calibri
+			// width: 50%;
+			height: 91%; 
+			//overflow: auto; //AL POSTO DI QUESTO METTO X E Y
+			overflow-y: scroll; 
+			overflow-x: hidden;
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+			-webkit-animation-name: fadeIn; /* Fade in the background */
+			-webkit-animation-duration: 0.4s;
+			animation-name: fadeIn;
+			animation-duration: 0.4s
+			z-index: 20;
+		}
+		
+			/* Modal Content */
+		.modal-content{
+			position: relative;
+			//bottom: 39px;
+			//right: 3.9%; // modificato qua per da bottom
+			z-index: 20;
+			/* background-color: #fefefe; */
+			width: 90%;
+			//heigth: 60%;
+			-webkit-animation-name: slideIn;
+			-webkit-animation-duration: 0.4s;
+			animation-name: slideIn;
+			animation-duration: 0.4s;
+			z-index:20;
+			font-family:Calibri
+		}
+
+			/* The Close Button */
+		.close,
+		.close2,
+		.close3,
+		.close4,
+		.close5,
+		.close6,
+		.close7,
+		.close8,
+		.close9{
+			color: white;
+			float: right;
+			font-size: 29px; 
+			font-weight: bold;
+			padding : -20px -20px;
+			z-index: 20;
+		}
+
+		.close:hover,  .close:focus,
+		.close2:hover, .close2:focus,
+		.close3:hover, .close3:focus,
+		.close4:hover, .close4:focus,
+		.close5:hover, .close5:focus,
+		.close6:hover, .close6:focus,
+		.close7:hover, .close7:focus,
+		.close8:hover, .close8:focus,
+		.close9:hover, .close9:focus{
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+			z-index: 20;
+			font-family:Calibri
+		}
+
+		.modal-header{
+			padding: 13px 16px;
+			color: white;
+			background-color: #191919;
+			z-index: 20;
+			font-size: 30px; 
+			font-family: Calibri;
+		}
+
+		.modal-body{
+			//bottom: 50%;
+			width: 100%; 
+			//height: 300px;   // ALTEZZA MODALE.
+			overflow:auto;
+			background-color: #ffffff;
+			z-index: 20;
+			font-family:Calibri
+		}
+
+		.modal-footer {
+			//padding: 5px 16px;
+			background-color: #191919;
+			z-index: 20;
+			font-family:Calibri
+		}
+
+		 /////IN QUESTE ANIMAZIONI --> SLIDEIN -> POSSONO ESSERE SOSTITUITI ANCHE CON ALTRI, (forse) , cerca altre funzioni ...
+			
+			/* Add Animation */
+		@-webkit-keyframes slideIn {
+			from {right: -300px; opacity: 0} // modificato qua per da bottom
+			to {right: 0; opacity: 1}// modificato qua per da bottom
+		}
+
+		@keyframes slideIn {
+			from {right: -300px; opacity: 0}// modificato qua per da bottom
+			to {right: 0; opacity: 1}// modificato qua per da bottom
+		}
+
+		@-webkit-keyframes fadeIn {
+			from {opacity: 0} 
+			to {opacity: 1}
+		}
+
+		@keyframes fadeIn {
+			from {opacity: 0} 
+			to {opacity: 1}
+		}
+
+		.arrowD{
+			position:fixed;
+			top: 38%;
+			right: 16px;
+			width:50px; 
+			height:70px; 
+			background-image:url('img/arr.png'); //Aggiunto trasparenza dov'era bianco , nel png
+			margin:0; 
+			padding:0; 
+			background-repeat : no-repeat;
+			z-index : 100; 
+		}
+
+		.arrowS{
+			position: fixed;
+			top: 38%;
+			width:50px; 
+			height:70px; 
+			background-image:url('img/all.png'); //Aggiunto trasparenza dov'era bianco , nel png
+			margin:0; 
+			padding:0; 
+			background-repeat : no-repeat;
+			z-index : 100; 
+		}
+
+			/* Animazione FADE per le mappe */
+			-webkit-animation-name: fade;
+		.fade {
+			-webkit-animation-duration: 1.5s;
+			animation-name: fade;
+			animation-duration: 1.5s;
+		}
+
+		@-webkit-keyframes fade {
+			from {opacity: .4} 
+			to {opacity: 1}
+		}
+
+		@keyframes fade {
+			from {opacity: .4} 
+			to {opacity: 1}
+		}
+
+		#tl{
+			position: fixed;
+			/* top: 0;	                      */	            
+			   top: 91.5%;
+			/* left: -190px;                  */
+			/* bottom: 50%;			*/
+			/* right: 2%;			*/
+			   left: -2%;                   
+			/* margin: 0px 50px 50px 50px;    */
+			   width: 105% ;
+			/* height: 15%;       */         
+			   visibility: visible;
+			/* border: 3px solid black;       */
+			   z-index: 10;
+			   overflow: hidden;
+			pointer-events:auto;
+			font-family:Calibri
+			}  
+			
+		#home{
+			position: fixed;
+			z-index:11;
+			bottom:2%;
+			left:1%;
+			
+			height = 50%;
+			width = 50%;
+			//da rendere il link sotto clickabile,  della prima mappa ...
+			pointer-events:none;
+		}
+		</style>
+	</head>
+<!--	SEZIONE N°3		-->
+	<body onresize=" drawChart()" onload =" map1(); currentSlide(1); "> <!-- fix bug della larghezza della timeline -->
+	
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+			google.charts.load("44", {packages:["timeline"]});
+			google.charts.setOnLoadCallback(drawChart);
+			var chart;
+			var dataTable;
+			var nomeTimeline = "tl";
+			var gr = "#595959" ;
+			var bl = "black" ;
+	 
+			var c1 = gr ;
+			var c2 = bl ;
+			var c3 = bl ;
+			var c4 = bl ;
+			var c5 = bl ;
+			var c6 = bl ; 
+			var c7 = bl ; 
+			var c8 = bl ;
+			var c9 = bl ;
+			var c10 = bl ;
+			//var gr = "#858585" ;
+			function drawChart() {
+			try{
+				var container = document.getElementById(nomeTimeline);
+				chart = new google.visualization.Timeline(container);
+				dataTable = new google.visualization.DataTable();
+				dataTable.addColumn({ type: 'string', id: 'numero_riga' });
+				dataTable.addColumn({ type: 'string', id: 'anno_iniziale' });
+				dataTable.addColumn({ type: 'date', id: 'inizio_data' });
+				dataTable.addColumn({ type: 'date', id: 'fine_data' });
+				dataTable.addRows([
+								  [ '0', 'HOME', 		new Date(2000),  new Date(2001) ],
+								  [ '0', '1800',        new Date(2001),  new Date(2002) ],
+								  [ '0', '1850',        new Date(2002),  new Date(2003) ],
+								  [ '0', '1954',        new Date(2003),  new Date(2004) ],
+								  [ '0', '1968',        new Date(2004),  new Date(2005) ],
+								  [ '0', '1983',        new Date(2005),  new Date(2006) ],
+								  [ '0', '2002',        new Date(2006),  new Date(2007) ],
+								  [ '0', '2008',        new Date(2007),  new Date(2008) ],
+								  [ '0', '2016',		new Date(2008),  new Date(2009)	],
+								  ]); 
+<!--	SEZIONE N°4		-->						  
+				/// '1' IL PRIMO PARAMETRO DI TUTTI SONO UGUALI COSI' VANNO SULLA STESSA LINEA 
+				var opz = { // opzionale, si puo' anche non inserire come secondo parametro, dunque non crearlo.
+							//timeline: {singleColor : "black"},
+							colors: [c1, c2, c3, c4, c5, c6, c7, c8, c9, /*c10*/],
+							tooltip: {trigger : 'none'}, // per togliere la piccola finestra ( tooltip ) che esce fuori e scrive la stringa nel 2° parametro dell addRows.
+							backgroundColor : 'black' , // #004c00 colore background della timeline ( del bordo ) 
+							timeline:{   barLabelStyle: { fontName: 'Calibri', fontSize: 16, bold:true },
+							}
+						  };
+				chart.draw(dataTable,opz); // Disegna la timeline .
+				google.visualization.events.addListener(chart, 'select', selectHandler2);
+			   }
+			catch(err){alert("Ricaricare la pagina in modo che la timeline venga visualizzata correttamente. Grazie.");}
+			}
+<!--	SEZIONE N°5		-->
+			/*
+			  FUNZIONI PER IMPOSTARE LA COLORAZIONE DELLA TIMELINE AD OGNI CAMBIAMENTO, E L'ICONA DELL'HOME
+			*/
+			function map1(){ 
+				ridHome(); 
+				 c1 = gr;
+				 c2 = bl;
+				 c3 = bl;
+				 c4 = bl;
+				 c5 = bl;
+				 c6 = bl;
+				 c7 = bl;
+				 c8 = bl;
+				 c9 = bl;
+				 drawChart();}
+			function map2(){
+				norHome();
+				 c1 = bl;
+				 c2 = gr;
+				 c3 = bl;
+				 c4 = bl;
+				 c5 = bl;
+				 c6 = bl;
+				 c7 = bl;
+				 c8 = bl;
+				 c9 = bl;
+				 drawChart();} 
+			function map3(){
+				norHome();
+				 c1 = bl;
+				 c2 = bl;
+				 c3 = gr;
+				 c4 = bl;
+				 c5 = bl;
+				 c6 = bl;
+				 c7 = bl;
+				 c8 = bl;
+				 c9 = bl;
+				 drawChart();}
+			function map4(){
+				norHome();
+				 c1 = bl;
+				 c2 = bl;
+				 c3 = bl;
+				 c4 = gr;
+				 c5 = bl;
+				 c6 = bl;
+				 c7 = bl;
+				 c8 = bl;
+				 c9 = bl;
+				 drawChart();}	 
+			function map5(){
+				norHome();
+				 c1 = bl;
+				 c2 = bl;
+				 c3 = bl;
+				 c4 = bl;
+				 c5 = gr;
+				 c6 = bl;
+				 c7 = bl;
+				 c8 = bl;
+				 c9 = bl;
+				 drawChart();}	
+			function map6(){
+				norHome();
+				 c1 = bl;
+				 c2 = bl;
+				 c3 = bl;
+				 c4 = bl;
+				 c5 = bl;
+				 c6 = gr;
+				 c7 = bl;
+				 c8 = bl;
+				 c9 = bl;
+				 drawChart();}	
+			function map7(){
+				norHome();
+				 c1 = bl;
+				 c2 = bl;
+				 c3 = bl;
+				 c4 = bl;
+				 c5 = bl;
+				 c6 = bl;
+				 c7 = gr;
+				 c8 = bl;
+				 c9 = bl;
+				 drawChart();}	
+			function map8(){
+				norHome();
+				 c1 = bl;
+				 c2 = bl;
+				 c3 = bl;
+				 c4 = bl;
+				 c5 = bl;
+				 c6 = bl;
+				 c7 = bl;
+				 c8 = gr;
+				 c9 = bl;
+				 drawChart();}
+			function map9(){
+				norHome();
+				 c1 = bl;
+				 c2 = bl;
+				 c3 = bl;
+				 c4 = bl;
+				 c5 = bl;
+				 c6 = bl;
+				 c7 = bl;
+				 c8 = bl;
+				 c9 = gr;
+				 drawChart();}
+			
+<!--	SEZIONE N°6		-->			
+			function selectHandler2() {
+				var selection = chart.getSelection();
+			
+				if(selection[0].row==0) { 
+					map1();
+					currentSlide(1);
+				}
+				if(selection[0].row==1) { 
+					map2();
+					currentSlide(2);
+				}
+				if(selection[0].row==2){  
+					map3();
+					currentSlide(3);
+				}
+				if(selection[0].row==3){ 
+					map4();
+					currentSlide(4);
+				}
+				if(selection[0].row==4){ 
+					map5();
+					currentSlide(5);
+				}
+				if(selection[0].row==5){ 
+					map6();
+					currentSlide(6);
+				}
+				if(selection[0].row==6){ 
+					map7();
+					currentSlide(7);
+				}
+				if(selection[0].row==7){ 
+					map8();
+					currentSlide(8);
+				}
+				if(selection[0].row==8){ 
+					map9();
+					currentSlide(9);
+				}
+				//////// N° DI IF = N DI MAPPE
+			}
+		</script>
+
+		<script> // QUESTE FUNZIONI SE NON LE USERO' DOVRO' ELIMINARLE DALLE ALTRE FUNZIONI, TESTING GRANDEZZA / ICONA CASA
+			function ridHome(){
+			//	document.getElementById("home").src="img/hicon2.png";
+				//document.getElementById("home").style.bottom="3.5px";
+			}
+			function norHome(){
+			//	document.getElementById("home").src="hicon.png";
+				//document.getElementById("home").style.bottom="2px";
+			}
+		</script>
+		 <!-- 
+		 Per aggiungere una mappa : 
+		 1 ) Crea una cartella all'interno di sito/mappe/ e chiamalo "mappeN" , dove mappe è il n dell'ultima cartella + 1.
+		 2 ) inserisci tutta l'esportazione da QGIS nella cartella
+		 3 ) crea una div con class "maps fade" (maps -> per lo slide , fade -> per le animazioni di fading) e crea un altro div, creando il collegamento con l'index all'interno della cartella appena creata in mappe.
+		 4 ) regola lo zoom e le coordinate della mappa , nel codice dell'index della mappa , sempre all'interno di mappe.
+		 -->
+<!--	SEZIONE N°7		-->
+		<div id="tl" ></div> <!-- Timeline. -->
+		<!--<img id="home" src="img/hicon.png" onclick="location.href = 'index.html'; ridHome();">	<!--per la home-->
+		<div id="Maps_container">
+			<div class="maps fade">
+				<div class="M" id="PrimaM"> </div> <!-- 1° Mappa. -->
+				<script>	//CARICAMENTO MAPPA 1.
+					document.getElementById("PrimaM").innerHTML='<object type="text/html" data="Mappe/mappahome/index.html" style="width:100%; height:100%; position:fixed; z-index:0" ></object>';
+				</script>
+			</div>
+		
+			<div class="maps fade">
+				<div class="M" id="SecondaM"> </div> <!-- 2° Mappa. -->
+				<script>	//CARICAMENTO MAPPA 2.
+					document.getElementById("SecondaM").innerHTML='<object type="text/html" data="Mappe/mappa1800/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+			
+			<div class="maps fade">
+				<div class="M" id="TerzaM"> </div>
+				<script>	// CARICAMENTO MAPPA 3.
+					document.getElementById("TerzaM").innerHTML='<object type="text/html" data="Mappe/mappa1850/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+			
+			<div class="maps fade">
+				<div class="M" id="QuartaM"> </div> 
+				<script>	// CARICAMENTO MAPPA 4.
+					document.getElementById("QuartaM").innerHTML='<object type="text/html" data="Mappe/aerea1954/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+		
+			<div class="maps fade">
+				<div class="M" id="QuintaM"> </div>
+				<script>	// CARICAMENTO MAPPA 5.
+					document.getElementById("QuintaM").innerHTML='<object type="text/html" data="Mappe/igm1968/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+			
+			<div class="maps fade">
+				<div class="M" id="SestaM"> </div>
+				<script>	// CARICAMENTO MAPPA 6.
+					document.getElementById("SestaM").innerHTML='<object type="text/html" data="Mappe/igm1983/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+			
+			<div class="maps fade">
+				<div class="M" id="SettimaM"> </div>
+				<script>	// CARICAMENTO MAPPA 7.
+					document.getElementById("SettimaM").innerHTML='<object type="text/html" data="Mappe/igm2002/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+			
+			<div class="maps fade">
+				<div class="M" id="OttavaM"> </div>
+				<script>	// CARICAMENTO MAPPA 8.
+					document.getElementById("OttavaM").innerHTML='<object type="text/html" data="Mappe/ortofoto2008/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+			
+			<div class="maps fade">
+				<div class="M" id="NonaM"> </div>
+				<script>	// CARICAMENTO MAPPA 9.
+					document.getElementById("NonaM").innerHTML='<object type="text/html" data="Mappe/mappa2016/index.html" style="width:100%; height:100%; position:fixed; z-index:0"></object>';
+				</script>
+			</div>
+		<!-- Maps_container END. -->
+		
+		<div class="arrowD" onclick="plusSlides(1)"></div> <!-- Freccia Destra. -->
+		<div class="arrowS" onclick="plusSlides(-1)"></div> <!-- Freccia Sinistra. -->
+		
+		<!--     START SLIDES MAPPE     -->
+<!--	SEZIONE N°8		-->		
+		<script>
+			var slideIndex = 1;
+			showSlides(slideIndex);
+
+			function plusSlides(n) {
+				slideIndex +=n ;
+				if (slideIndex == 1 ) {map1(); currentSlide(1);}
+				if (slideIndex == 2 ) {map2(); currentSlide(2);}
+				if (slideIndex == 3 ) {map3(); currentSlide(3);}
+				if (slideIndex == 4 ) {map4(); currentSlide(4);}
+				if (slideIndex == 5 ) {map5(); currentSlide(5);}
+				if (slideIndex == 6 ) {map6(); currentSlide(6);}
+				if (slideIndex == 7 ) {map7(); currentSlide(7);}
+				if (slideIndex == 8 ) {map8(); currentSlide(8);}
+				if (slideIndex == 9 ) {map9(); currentSlide(9);}
+			}
+
+			function currentSlide(n) {
+				showSlides(slideIndex = n);
+			}
+
+			function showSlides(n) {
+				var slides = document.getElementsByClassName("maps");
+				if (n > slides.length) {slideIndex = 1}    
+				if (n < 1) {slideIndex = slides.length}
+				for (var i = 0; i < slides.length; i++){
+					slides[i].style.display = "none";
+				}
+<!--	SEZIONE N°9		-->		
+				slides[slideIndex-1].style.display = "block";  
+				if (slideIndex == 1 ) { ApriPU1();}
+				if (slideIndex == 2 ) { ApriPU2();}
+				if (slideIndex == 3 ) { ApriPU3();}
+				if (slideIndex == 4 ) { ApriPU4();}
+				if (slideIndex == 5 ) { ApriPU5();}
+				if (slideIndex == 6 ) { ApriPU6();}
+				if (slideIndex == 7 ) { ApriPU7();}
+				if (slideIndex == 8 ) { ApriPU8();}
+				if (slideIndex == 9 ) { ApriPU9();}
+			}
+		</script>
+		<!--     END SLIDES MAPPE     -->
+		<!--       START POPUP          -->
+		<!-- The Modal -->
+<!--	SEZIONE N°10		-->		
+		<div id="myModal" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close">&times </span> 
+					<h1> Story map di </h1>
+					<h2> Mogliano Veneto </h2>
+				</div>
+				<div class="modal-body">
+					<br>
+					Una lettura web gis che permette di cogliere l’importanza e il ruolo delle permanenze storiche nella costruzione della forma della città, riassegnandoli un ruolo strutturale all’interno degli scenari futuri.
+					<br>
+					<br>
+					<img src="img/Terraglio1.jpg" alt="Terraglio" width="100%">  
+					<br>
+					<br>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- The Modal2 -->
+		<div id="myModal2" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close2">&times </span> 
+					<h1> Mojan </h1>
+				</div>
+				
+				<div class="modal-body">
+					<br>
+					Quando gli Austriaci mapparono il territorio Veneto (Von Zac) Mogliano appare come un Comune rurale caratterizzato da insediamenti sparsi e prime densificazioni lungo la dorsale del terraglio.
+					<br>
+					<br>
+					<img src="img/1800.jpg" alt="1800" width="100%">
+					<br>
+					<br>
+					Qui i suoi segni morfogenetici distintivi sono evidenti. Lo Zero a Nord ed il Dese a Sud definiscono i suoi limiti, le ville venete i nodi ed il terraglio la dorsale in corrispondenza dei quali si organizza il sistema insediativo. 
+					<br>
+					<br>
+					Il terraglio è la strada principale di connessione e scambio Nord-Sud (Treviso e Venezia), mentre una viabilità minore con direzione Est-Ovest collega Mogliano con Casale e Scorzè e più a sud verso Marcon. Queste vie definiscono anche gli spostamenti interni tra i nuclei storici delle frazioni come Zerman e Campocroce.
+					<br>
+					<br>
+					In corrispondenza dell’incrocio di questi due assi comincia a prender forma e densificarsi il nucleo centrale del sistema insediativo,
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- The Modal3 -->
+		<div id="myModal3" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close3">&times</span> 
+					<h1> La ferrovia a Mogliano </h1>
+				</div>
+				
+				<div class="modal-body">
+				<br>
+				La prima grande trasformazione per Mogliano è stata con l’arrivo della ferrovia. La tratta Mestre-Treviso viene inaugurata nel 1851 rafforzando le relazioni tra i sistemi. Mogliano mantiene il suo carattere rurale fino ai tempi tra le due guerre consolidando il suo edificato centrale lungo il nuovo asse.
+				<br>
+				<br>
+				<img src="img/1850.png" alt="1850" width="100%">
+				<br>
+				<br>
+				Questa infrastruttura che da un lato potenzia le relazioni di scala territoriale, dall’altro divide in due il territorio comunale innescando di fatto un diverso percorso di sviluppo urbanistico dei due ambiti, molto più marcato (come vedremo) ad Est.
+				<br>
+				<br>
+			    <br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- The Modal4 -->
+		<div id="myModal4" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close4">&times</span> 
+					<h1> Mogliano nel dopoguerra </h1>
+				</div>
+
+				<div class="modal-body">
+				<br>
+				Dopo la seconda guerra la città cresce espandendo il suo centro verso Sud-Est e sopra via Roma. Le frazioni mantengono ancora pochi insediamenti ed il carattere di insediamento rurale.
+				<br>
+				<br>
+				<img src="img/1954.png" alt="1954" width="100%">
+				<br>
+				<br>
+				Permangono evidenti i segni morfogenetici dei fiumi, del terraglio e delle ville che mantengono il ruolo di riferimento visivo nello spazio rurale. Per quelle in centro inizia in questi anni un percorso di “mascheramento” dove l’edificato nuovo si avvicina alle ville mutandone la percezione. 
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- The Modal5 -->
+		<div id="myModal5" class="modal">
+			<!-- Modal content --> 
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close5">&times</span> 
+					<h1> Mogliano e le Frazioni </h1>
+				</div>
+
+				<div class="modal-body">
+				<br>
+				Gli anni del boom economico investono anche Mogliano ed il suo sviluppo. Da questo periodo crescono le frazioni di Zerman e Campocroce, il centro si consolida all’interno dello spazio segnato tra lo Zero e via Zermanesa ed anche a Sud fino a via Ronzinella. La via storica Marignana che collega Marocco al Ghetto e poi al centro mantiene i suoi caratteri senza particolari sviluppi se non a Sud a Marocco. Poi lungo il Terraglio e tra la strada e la ferrovia l’insediamento si consolida  fermandosi al Fiume Zero. Ancora i sui segni storici rappresentano i limiti e gli assi dello sviluppo.
+				<br>
+				<br>					
+				I segni ordinatori del sistema storico lineari (viabilità storica) e puntuali (ville ed edifici) resistono singolarmente ma tendono ad essere inglobati all’interno della maglia geometrica dei nuovi tessuti contemporanei perdendo le reciproche interrelazioni fisiche e percettive.
+				<br>
+				<br>
+				<img src="img/1968.jpg" alt="1968" width="100%">
+				<br>
+				F.A.S.T. - Foto Archivio Storico della Provincia di Treviso
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- The Modal6 -->
+		<div id="myModal6" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close6">&times</span> 
+					<h1> La città cresce e riorganizza le sue relazioni </h1>
+				</div>
+
+				<div class="modal-body">
+				<br>
+				In questo periodo Mogliano raggiunge la quota di 20.000 abitanti superando i 25.000 a fine degli anni ‘80. Questa crescita è accompagnata da un’espansione dell’edificato tra via Zermanesa e via Ronzinella e anche a Sud di quest’ultima via. Si insediano i primi grandi contenitori di edilizia popolare insieme alla zona industriale dal lato opposto del terraglio ed adiacente la ferrovia. In questo scenario iniziano a fare la loro comparsa le grandi infrastrutture la prima è la A27, inaugurata nel 1972. Un ulteriore demarcazione ma allo stesso tempo il terzo asse di relazione territoriale assieme al terraglio e ferrovia.				<br>
+				<br>
+				<img src="img/1983.png" alt="1983" width="100%">
+				<br>
+				<br>
+				Il casello a Nord-Est del territorio comunale costituisce un nuovo nodo attrattivo ed una porta di accesso al sistema territoriale producendo: da un lato nuove tensioni attrattive i cui esiti formali si noteranno più avanti; dall’altro un effetto immediato di densificazione ed espansione dei centri abitati contermini.				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- The Modal7 --> 
+		<div id="myModal7" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close7">&times</span> 
+					<h1> Città Consolidata </h1>
+				</div>
+
+				<div class="modal-body">
+				<br>
+				La città tra gli anni ‘90 ed il nuovo millennio si consolida chiudendo l’espansione residenziale ad Est della ferrovia. Si addensa il sistema insediativo con un incremento dei servizi e delle funzioni (n primis la sede delle Generali degli anni ‘90). 				<br>
+				<br>
+				<img src="img/2002.jpg" alt="2002" width="100%">
+				<br>
+				<br>
+				Non si leggono nuovi grandi interventi urbanistici ma una puntuale urbanizzazione di completamento delle aree esistenti. 
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>	
+				</div>
+			</div>	
+		</div>
+
+		<!-- The Modal8 -->
+		<div id="myModal8" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close8">&times</span> 
+					<h1> Mogliano e il passante </h1>
+				</div>
+
+				<div class="modal-body">
+				<br>
+				La città ha trovato la sua maturità urbana, crescono invece le espansioni nelle frazioni come Campocroce e Zerman insieme ad un aumento del sistema urbano sopra via Roma. Si nota il rafforzamento di alcune frange urbane come quelle nella strada che va a Marcon.
+				<br>
+				<br>
+				<img src="img/2008.png" alt="2008" width="100%">
+				<br>
+				<br>
+				Il passante, di prossima apertura chiude e definisce il nuovo margine del Comune. E’ la terza grande trasformazione infrastrutturale che condiziona la città e ne trasforma nuovamente gli equilibri rendendo ancor più strategico lo spazio prossimo al casello e segnando il limite del sistema metropolitano di Venezia.
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				</div>
+			</div>	
+		</div>
+		
+		<!-- The Modal9 -->
+		<div id="myModal9" class="modal">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<span class="close9">&times</span> 
+					<h1> Mogliano 20+ </h1>
+				</div>
+
+				<div class="modal-body">
+				<br>
+				Le infrastrutture si completano con la realizzazione della tangenziale nord che scarica una quota di spostamenti sia Nord-Sud che Est-Ovest dagli storici assi di collegamento.
+				<br>
+				<br>
+				Si tratta della 4° grande trasformazione che aprirà ad un’occasione di riorganizzazione del centro a fronte del diverso ruolo che assumono.
+				<br>
+				<br>
+				A livello percettivo il sistema delle ville viene inglobato perdendo forza di relazioni visiva, il sistema delle acque allo stesso modo da elemento morfogenetico tende ad essere ignorato ed a tratti compromesso.
+				<br>
+				<br>
+				Per contro queste criticità consentono una lettura che favorisce la consapevolezza in merito alla permanenza di porzioni di territorio ancora dal rilevante valore ambientale, paesaggistico e della produzione che devono essere nuovamente relazionate tra loro.
+				<br>
+				<br>
+				In questo scenario gli storici assi di relazione secondaria ritrovano la loro funzione di connessione lenta verso i nodi del centro e i sistemi di connessione dalla rilevanza ambientale e paesaggistica.
+				<br>
+				<br>
+				<img src="img/2020.JPG" alt="2020" width="100%">
+				<br>
+				<br>
+				Il terraglio, alleggerito dal traffico di spostamento può ampliare e definire con più forza anche formale il suo carattere di strada urbana. Al contempo la strada Ovest per via Ghetto può essere valorizzato come itinerario lento per la scoperta delle ville venete e dei percorsi della memoria.
+				<br>
+				<br>
+				Anche via Ronzinella potrebbe rivedersi in questa chiave come connessione Est-Ovest e nodo di incrocio con un sistema verde pedociclabile Nord-Sud che dal centro porta a Marocco.
+				<br>
+				<br>
+				Come le trasformazioni storiche hanno riorganizzato gli equilibri del Comune, anche oggi allo stesso modo le più recenti infrastrutture influiranno nel sistema rispetto le relazioni di chi vive ed abita la città, di quanti vi lavorano e dei fruitori che, oltre a fermarsi per una tappa a Venezia, potrebbero anche esplorare le sue permanenze storiche, ambientali e paesaggistiche messe in relazione. 
+				<br>
+				</div>
+			</div>	
+		</div>
+<!--	SEZIONE N°11		-->
+		<script>
+			var window = 0;
+			var modal = document.getElementById('myModal');
+			modal.style.display = "none"; // al'inizio lo nascondo.
+
+			//ottengo id del pop
+			var modal = document.getElementById('myModal');
+			var span = document.getElementsByClassName("close")[0];
+			// X , per chiudere il modale
+			span.onclick = function() {
+			modal.style.display = "none";
+			}
+			window.onclick = function(event) {
+				if (event.target == modal) {
+					modal.style.display = "none";
+				}
+			}
+			function ApriPU1(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "block";
+			modal2.style.display = "none";
+			modal3.style.display = "none";
+			modal4.style.display = "none";
+			modal5.style.display = "none";
+			modal6.style.display = "none";
+			modal7.style.display = "none";
+			modal8.style.display = "none";
+			modal9.style.display = "none";
+			}
+		</script>                   
+		
+		<script> 
+			var window2 = 0;
+			var modal2 = document.getElementById('myModal2');
+			modal2.style.display = "none"; // al'inizio lo nascondo.
+
+			//ottengo id del pop
+			var modal2 = document.getElementById('myModal2');
+			var span2 = document.getElementsByClassName("close2")[0];
+			// X , per chiudere il modale
+			span2.onclick = function() {
+			modal2.style.display = "none";
+			}
+			window2.onclick = function(event) {
+				if (event.target == modal2) {
+					modal2.style.display = "none";
+				}
+			}
+			function ApriPU2(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "block";
+			modal3.style.display = "none";
+			modal4.style.display = "none";
+			modal5.style.display = "none";
+			modal6.style.display = "none";
+			modal7.style.display = "none";
+			modal8.style.display = "none";
+			modal9.style.display = "none";
+			}
+		</script> 
+		
+		<script>
+			var window3 = 0;
+			var modal3 = document.getElementById('myModal3');
+			modal3.style.display = "none"; // al'inizio lo nascondo.
+			
+			//ottengo id del pop
+			var modal3 = document.getElementById('myModal3');
+			var span3 = document.getElementsByClassName("close3")[0];
+			// X , per chiudere il modale
+			span3.onclick = function() {
+			modal3.style.display = "none";
+			}
+			window3.onclick = function(event) {
+				if (event.target == modal3) {
+					modal3.style.display = "none";
+				}
+			}
+			function ApriPU3(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "none";
+			modal3.style.display = "block";
+			modal4.style.display = "none";
+			modal5.style.display = "none";
+			modal6.style.display = "none";
+			modal7.style.display = "none";
+			modal8.style.display = "none";
+			modal9.style.display = "none";
+			}
+		</script>
+
+		<script> 
+			var window4 = 0;
+			var modal4 = document.getElementById('myModal4');
+			modal4.style.display = "none"; // al'inizio lo nascondo.
+		
+			//ottengo id del pop
+			var modal4 = document.getElementById('myModal4');
+			var span4 = document.getElementsByClassName("close4")[0];
+			// X , per chiudere il modale
+			span4.onclick = function() {
+			modal4.style.display = "none";
+			}
+			window4.onclick = function(event) {
+				if (event.target == modal4) {
+					modal4.style.display = "none";
+				}
+			}
+			function ApriPU4(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "none";
+			modal3.style.display = "none";
+			modal4.style.display = "block";
+			modal5.style.display = "none";
+			modal6.style.display = "none";
+			modal7.style.display = "none";
+			modal8.style.display = "none";
+			modal9.style.display = "none";
+			}
+		</script>
+		
+		<script> 
+			var window5 = 0;
+			var modal5= document.getElementById('myModal5');
+			modal5.style.display = "none"; // al'inizio lo nascondo.
+			
+			//ottengo id del pop
+			var modal5 = document.getElementById('myModal5');
+			var span5 = document.getElementsByClassName("close5")[0];
+			// X , per chiudere il modale
+			span5.onclick = function() {
+			modal5.style.display = "none";
+			}
+			window5.onclick = function(event5) {
+				if (event5.target == modal5) {
+					modal5.style.display = "none";
+				}
+			}
+			function ApriPU5(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "none";
+			modal3.style.display = "none";
+			modal4.style.display = "none";
+			modal5.style.display = "block";
+			modal6.style.display = "none";
+			modal7.style.display = "none";
+			modal8.style.display = "none";
+			modal9.style.display = "none";
+			}
+		</script>
+		
+		<script> 
+			var window6 = 0;
+			var modal6 = document.getElementById('myModal6');
+			modal6.style.display = "none"; // al'inizio lo nascondo.
+			
+			//ottengo id del pop
+			var modal6 = document.getElementById('myModal6');
+			var span6 = document.getElementsByClassName("close6")[0];
+			// X , per chiudere il modale
+			span6.onclick = function() {
+			modal6.style.display = "none";
+			}
+			window6.onclick = function(event6) {
+				if (event6.target == modal6) {
+					modal6.style.display = "none";
+				}
+			}
+			function ApriPU6(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "none";
+			modal3.style.display = "none";
+			modal4.style.display = "none";
+			modal5.style.display = "none";
+			modal6.style.display = "block";
+			modal7.style.display = "none";
+			modal8.style.display = "none";
+			modal9.style.display = "none";
+			}
+		</script>
+		
+		<script> 
+			var window7 = 0;
+			var modal7 = document.getElementById('myModal7');
+			modal7.style.display = "none"; // al'inizio lo nascondo.
+			
+			//ottengo id del pop
+			var modal7 = document.getElementById('myModal7');
+			var span7 = document.getElementsByClassName("close7")[0];
+			// X , per chiudere il modale
+			span7.onclick = function() {
+			modal7.style.display = "none";
+			}
+			window7.onclick = function(event7) {
+				if (event7.target == modal7) {
+					modal7.style.display = "none";
+				}
+			}
+			function ApriPU7(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "none";
+			modal3.style.display = "none";
+			modal4.style.display = "none";
+			modal5.style.display = "none";
+			modal6.style.display = "none";
+			modal7.style.display = "block";
+			modal8.style.display = "none";
+			modal9.style.display = "none";
+			}
+		</script>
+		
+		<script> 
+			var window8 = 0;
+			var modal8 = document.getElementById('myModal8');
+			modal8.style.display = "none"; // al'inizio lo nascondo.
+			
+			//ottengo id del pop
+			var modal8 = document.getElementById('myModal8');
+			var span8 = document.getElementsByClassName("close8")[0];
+			// X , per chiudere il modale
+			span8.onclick = function() {
+			modal8.style.display = "none";
+			}
+			window8.onclick = function(event8) {
+				if (event8.target == modal8) {
+					modal8.style.display = "none";
+				}
+			}
+			function ApriPU8(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "none";
+			modal3.style.display = "none";
+			modal4.style.display = "none";
+			modal5.style.display = "none";
+			modal6.style.display = "none";
+			modal7.style.display = "none";
+			modal8.style.display = "block";
+			modal9.style.display = "none";
+			}
+		</script>
+		
+		<script> 
+			var window9 = 0;
+			var modal9 = document.getElementById('myModal9');
+			modal9.style.display = "none"; // al'inizio lo nascondo.
+			
+			//ottengo id del pop
+			var modal9 = document.getElementById('myModal9');
+			var span9 = document.getElementsByClassName("close9")[0];
+			// X , per chiudere il modale
+			span9.onclick = function() {
+			modal9.style.display = "none";
+			}
+			window9.onclick = function(event9) {
+				if (event9.target == modal9) {
+					modal9.style.display = "none";
+				}
+			}
+			function ApriPU9(){ //funzione per tirarlo fuori, che lo richiamo sopra , nella select chart
+			modal.style.display = "none";
+			modal2.style.display = "none";
+			modal3.style.display = "none";
+			modal4.style.display = "none";
+			modal5.style.display = "none";
+			modal6.style.display = "none";
+			modal7.style.display = "none";
+			modal8.style.display = "none";
+			modal9.style.display = "block";
+			}
+		</script>
+	<!--       END POPUP          -->
+	</body>
+</html>

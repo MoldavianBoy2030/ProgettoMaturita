@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/label.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.css" />
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <script src="js/OSMBuildings-Leaflet.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/label.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/leaflet.markercluster.js"></script>
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="data/json_ville1.js"></script>
+        <script src="data/json_a0102011ConfiniComunali2.js"></script>
+        <script src="data/json_Ferrovia3.js"></script>
+        <script src="data/json_FIUMI4.js"></script>
+        <script src="data/json_TERRAGLIO5.js"></script>
+        <script src="data/json_ViaNuova6.js"></script>
+        <script src="data/json_ViaAlta7.js"></script>
+        <script src="data/json_ViaTommasini8.js"></script>
+        <script src="data/json_ViaSassi9.js"></script>
+        <script src="data/json_ViaGhetto10.js"></script>
+        <script src="data/json_ViaRonzinella11.js"></script>
+        <script src="data/json_ViaZermanessa12.js"></script>
+        <script src="data/json_ViaRoma13.js"></script>
+        <script>
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).setView([45.5664,12.2904],13);
+        var hash = new L.Hash(map);
+        //map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var feature_group = new L.featureGroup([]);
+        var bounds_group = new L.featureGroup([]);
+        var raster_group = new L.LayerGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            //attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        var initialOrder = new Array();
+        var layerOrder = new Array();
+        function stackLayers() {
+            for (index = 0; index < initialOrder.length; index++) {
+                map.removeLayer(initialOrder[index]);
+                map.addLayer(initialOrder[index]);
+            }
+        }
+        function restackLayers() {
+            for (index = 0; index < layerOrder.length; index++) {
+                layerOrder[index].bringToFront();
+            }
+        }
+        layerControl = L.control.layers({},{},{collapsed:false});
+        var img_Ortofoto2008modificato0 = 'data/json_Ortofoto2008modificato0.png';
+        var img_bounds_Ortofoto2008modificato0 = [[45.4989406279,12.1683808452],[45.6515309917,12.3494574426]];
+        var overlay_Ortofoto2008modificato0 = new L.imageOverlay(img_Ortofoto2008modificato0, img_bounds_Ortofoto2008modificato0);
+        bounds_group.addLayer(overlay_Ortofoto2008modificato0);
+        layerOrder[layerOrder.length] = overlay_Ortofoto2008modificato0;
+        raster_group.addLayer(overlay_Ortofoto2008modificato0);
+        function pop_ville1(feature, layer) {
+            var popupContent =(feature.properties['Popup'] !== null ? Autolinker.link(String(feature.properties['Popup'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleville1(feature) {
+            return {
+                weight: 8.24,
+                color: '#ef0000',
+                fillColor: '#ef0000',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0,
+                fillOpacity: 1.0
+            };
+        }
+        var json_ville1JSON = new L.geoJson(json_ville1, {
+            onEachFeature: pop_ville1,
+            style: doStyleville1
+        });
+        layerOrder[layerOrder.length] = json_ville1JSON;
+        bounds_group.addLayer(json_ville1JSON);
+        initialOrder[initialOrder.length] = json_ville1JSON;
+        feature_group.addLayer(json_ville1JSON);
+        function pop_a0102011ConfiniComunali2(feature, layer) {
+            var popupContent =(feature.properties['NomeCom'] !== null ? Autolinker.link(String(feature.properties['NomeCom'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStylea0102011ConfiniComunali2(feature) {
+            return {
+                weight: 2.64,
+                color: '#000000',
+                fillColor: 'none',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0,
+                fillOpacity: 1.0
+            };
+        }
+        var json_a0102011ConfiniComunali2JSON = new L.geoJson(json_a0102011ConfiniComunali2, {
+            onEachFeature: pop_a0102011ConfiniComunali2,
+            style: doStylea0102011ConfiniComunali2
+        });
+        layerOrder[layerOrder.length] = json_a0102011ConfiniComunali2JSON;
+        bounds_group.addLayer(json_a0102011ConfiniComunali2JSON);
+        initialOrder[initialOrder.length] = json_a0102011ConfiniComunali2JSON;
+        feature_group.addLayer(json_a0102011ConfiniComunali2JSON);
+        function pop_Ferrovia3(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleFerrovia3(feature) {
+            return {
+                weight: 3.44,
+                color: '#006803',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_Ferrovia3JSON = new L.geoJson(json_Ferrovia3, {
+            onEachFeature: pop_Ferrovia3,
+            style: doStyleFerrovia3
+        });
+        layerOrder[layerOrder.length] = json_Ferrovia3JSON;
+        bounds_group.addLayer(json_Ferrovia3JSON);
+        initialOrder[initialOrder.length] = json_Ferrovia3JSON;
+        feature_group.addLayer(json_Ferrovia3JSON);
+        function pop_FIUMI4(feature, layer) {
+            var popupContent =(feature.properties['NOME'] !== null ? Autolinker.link(String(feature.properties['NOME'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleFIUMI4(feature) {
+            return {
+                weight: 3.2,
+                color: '#0561ff',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_FIUMI4JSON = new L.geoJson(json_FIUMI4, {
+            onEachFeature: pop_FIUMI4,
+            style: doStyleFIUMI4
+        });
+        layerOrder[layerOrder.length] = json_FIUMI4JSON;
+        bounds_group.addLayer(json_FIUMI4JSON);
+        initialOrder[initialOrder.length] = json_FIUMI4JSON;
+        feature_group.addLayer(json_FIUMI4JSON);
+        function pop_TERRAGLIO5(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleTERRAGLIO5(feature) {
+            return {
+                weight: 3.44,
+                color: '#f26500',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_TERRAGLIO5JSON = new L.geoJson(json_TERRAGLIO5, {
+            onEachFeature: pop_TERRAGLIO5,
+            style: doStyleTERRAGLIO5
+        });
+        layerOrder[layerOrder.length] = json_TERRAGLIO5JSON;
+        bounds_group.addLayer(json_TERRAGLIO5JSON);
+        initialOrder[initialOrder.length] = json_TERRAGLIO5JSON;
+        feature_group.addLayer(json_TERRAGLIO5JSON);
+        function pop_ViaNuova6(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaNuova6(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaNuova6JSON = new L.geoJson(json_ViaNuova6, {
+            onEachFeature: pop_ViaNuova6,
+            style: doStyleViaNuova6
+        });
+        layerOrder[layerOrder.length] = json_ViaNuova6JSON;
+        bounds_group.addLayer(json_ViaNuova6JSON);
+        initialOrder[initialOrder.length] = json_ViaNuova6JSON;
+        feature_group.addLayer(json_ViaNuova6JSON);
+        function pop_ViaAlta7(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaAlta7(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaAlta7JSON = new L.geoJson(json_ViaAlta7, {
+            onEachFeature: pop_ViaAlta7,
+            style: doStyleViaAlta7
+        });
+        layerOrder[layerOrder.length] = json_ViaAlta7JSON;
+        bounds_group.addLayer(json_ViaAlta7JSON);
+        initialOrder[initialOrder.length] = json_ViaAlta7JSON;
+        feature_group.addLayer(json_ViaAlta7JSON);
+        function pop_ViaTommasini8(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaTommasini8(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaTommasini8JSON = new L.geoJson(json_ViaTommasini8, {
+            onEachFeature: pop_ViaTommasini8,
+            style: doStyleViaTommasini8
+        });
+        layerOrder[layerOrder.length] = json_ViaTommasini8JSON;
+        bounds_group.addLayer(json_ViaTommasini8JSON);
+        initialOrder[initialOrder.length] = json_ViaTommasini8JSON;
+        feature_group.addLayer(json_ViaTommasini8JSON);
+        function pop_ViaSassi9(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaSassi9(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaSassi9JSON = new L.geoJson(json_ViaSassi9, {
+            onEachFeature: pop_ViaSassi9,
+            style: doStyleViaSassi9
+        });
+        layerOrder[layerOrder.length] = json_ViaSassi9JSON;
+        bounds_group.addLayer(json_ViaSassi9JSON);
+        initialOrder[initialOrder.length] = json_ViaSassi9JSON;
+        feature_group.addLayer(json_ViaSassi9JSON);
+        function pop_ViaGhetto10(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaGhetto10(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaGhetto10JSON = new L.geoJson(json_ViaGhetto10, {
+            onEachFeature: pop_ViaGhetto10,
+            style: doStyleViaGhetto10
+        });
+        layerOrder[layerOrder.length] = json_ViaGhetto10JSON;
+        bounds_group.addLayer(json_ViaGhetto10JSON);
+        initialOrder[initialOrder.length] = json_ViaGhetto10JSON;
+        feature_group.addLayer(json_ViaGhetto10JSON);
+        function pop_ViaRonzinella11(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaRonzinella11(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaRonzinella11JSON = new L.geoJson(json_ViaRonzinella11, {
+            onEachFeature: pop_ViaRonzinella11,
+            style: doStyleViaRonzinella11
+        });
+        layerOrder[layerOrder.length] = json_ViaRonzinella11JSON;
+        bounds_group.addLayer(json_ViaRonzinella11JSON);
+        initialOrder[initialOrder.length] = json_ViaRonzinella11JSON;
+        feature_group.addLayer(json_ViaRonzinella11JSON);
+        function pop_ViaZermanessa12(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaZermanessa12(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaZermanessa12JSON = new L.geoJson(json_ViaZermanessa12, {
+            onEachFeature: pop_ViaZermanessa12,
+            style: doStyleViaZermanessa12
+        });
+        layerOrder[layerOrder.length] = json_ViaZermanessa12JSON;
+        bounds_group.addLayer(json_ViaZermanessa12JSON);
+        initialOrder[initialOrder.length] = json_ViaZermanessa12JSON;
+        feature_group.addLayer(json_ViaZermanessa12JSON);
+        function pop_ViaRoma13(feature, layer) {
+            var popupContent =(feature.properties['Nome'] !== null ? Autolinker.link(String(feature.properties['Nome'])) : '');
+            layer.bindPopup(popupContent);
+        }
+
+        function doStyleViaRoma13(feature) {
+            return {
+                weight: 3.44,
+                color: '#8bdf15',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                opacity: 1.0
+            };
+        }
+        var json_ViaRoma13JSON = new L.geoJson(json_ViaRoma13, {
+            onEachFeature: pop_ViaRoma13,
+            style: doStyleViaRoma13
+        });
+        layerOrder[layerOrder.length] = json_ViaRoma13JSON;
+        bounds_group.addLayer(json_ViaRoma13JSON);
+        initialOrder[initialOrder.length] = json_ViaRoma13JSON;
+        feature_group.addLayer(json_ViaRoma13JSON);
+        raster_group.addTo(map);
+        feature_group.addTo(map);
+        stackLayers();
+        map.on('overlayadd', restackLayers);
+        </script>
+    </body>
+</html>
